@@ -8,8 +8,8 @@ def home():
     return "Homepage"
 
 @app.route('/rep')
-def getServers():
-    return
+def getservers():
+    return f"Hello from server: {socket.gethostname()}"
 
 
 if __name__ == '__main__':
