@@ -8,7 +8,7 @@ def home():
     return "Homepage"
 
 @app.route('/rep')
-def getservers():
+def getServers():
     return
 
 
