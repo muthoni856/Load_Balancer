@@ -51,3 +51,24 @@ class ConsistentHashing:
         """
         # Filter out the node and its virtual replicas from the nodes list
         self.nodes = [n for n in self.nodes if n[1] != node]
+def get_node(self, key):
+        """
+        Get the physical node responsible for the given key.
+        
+        Parameters:
+        key (int): The key for which the node is to be found.
+        
+        Returns:
+        str: The identifier of the responsible physical node.
+        """
+        if not self.nodes:
+            return None  # Return None if no nodes are available
+
+        # Hash the key to find its position on the hash ring
+        key_hash = key % self.num_slots
+        # Find the first node with a hash value greater than or equal to the key_hash
+        for h in self.nodes:
+            if key_hash <= h[0]:
+                return h[1]
+        # If no such node is found, return the first node in the list (wrap around the ring)
+        return self.nodes[0][1]
