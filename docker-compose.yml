@@ -1,11 +1,14 @@
-version: '3.8'
+version: '3'
 
 services:
   app:
     build:
       context: app
     ports:
-      - "5000:5000"
+      - "5000"
+  load_balancer:
+    build:
+      context: app/
   nginx:
     image: nginx:latest
     volumes:
@@ -14,3 +17,4 @@ services:
       - app
     ports:
       - "80:80"
+
