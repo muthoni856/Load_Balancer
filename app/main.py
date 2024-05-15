@@ -9,7 +9,7 @@ def home():
 
 @app.route('/rep')
 def getservers():
-    return
+    return f"Hello from server: {socket.gethostname()}"
 
 
 if __name__ == '__main__':
