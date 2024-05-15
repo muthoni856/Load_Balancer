@@ -89,3 +89,35 @@ def add_replica():
             "status": "successful",
         }
         return jsonify(response_data), 200
+    
+@app.route('/rm', methods=['DELETE'])
+def remove_replicas():
+    """
+    Endpoint to remove existing server replicas.
+    """
+    data = request.get_json()  # Get the JSON data from the request
+    n = data.get('n')  # Number of replicas to remove
+    hostnames = data.get('hostnames')  # List of hostnames to remove
+
+    # Validate the input
+    if len(hostnames) > n:
+        return jsonify({
+            'message': 'Error, number of hostnames is greater than removable instances',
+            'status': 'failure'
+        }), 400
+    else:
+        # Remove the hostnames from the replicas and consistent hashing ring
+        for hostname in hostnames:
+            if hostname in server_replicas:
+                server_replicas.remove(hostname)
+                hashing.remove_node(hostname)
+
+        response_data = {
+            'message': {
+                'N': len(server_replicas),  # Updated number of replicas
+                'replicas': server_replicas  # Updated list of replicas
+            },
+            'status': 'successful'
+        }
+        return jsonify(response_data), 200
+
