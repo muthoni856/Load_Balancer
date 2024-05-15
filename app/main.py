@@ -120,4 +120,25 @@ def remove_replicas():
             'status': 'successful'
         }
         return jsonify(response_data), 200
+@app.route('/<path>')
+def route_to_replica(path):
+    """
+    Endpoint to route a request to a specific server based on the path.
+    """
+    # Validate the path
+    if path != 'home':
+        return jsonify({
+            'message': f'Error, {path} endpoint does not exist in server replicas',
+            'status': 'failure'
+        }), 
+    else:
+        # Get the node responsible for the hashed value of the path
+        node_id = hashing.get_node(hash(path))
+        return jsonify({
+            'message': f'Hello from server: {node_id}',
+            'status': 'successful'
+        }), 200
 
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)  # Enable debug logging
+    app.run(debug=True)  # Run the Flask application in debug mode commenting out the line below
