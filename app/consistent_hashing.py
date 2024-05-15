@@ -41,3 +41,13 @@ class ConsistentHashing:
             self.nodes.append((hashed_key, node))  # Append (hashed_key, node) tuple
         # Sort the list of nodes to maintain the order on the hash ring
         self.nodes.sort()
+
+    def remove_node(self, node):
+        """
+        Remove a physical node and its virtual replicas from the hash ring.
+        
+        Parameters:
+        node (str): The identifier of the physical node to be removed.
+        """
+        # Filter out the node and its virtual replicas from the nodes list
+        self.nodes = [n for n in self.nodes if n[1] != node]
