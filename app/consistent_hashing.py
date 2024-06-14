@@ -1,11 +1,10 @@
 import hashlib
 
-
 class ConsistentHashing:
     def __init__(self, num_slots=512):
         """
         Initialize the ConsistentHashing class.
-
+        
         Parameters:
         num_slots (int): The number of slots in the hash ring. Default is 512.
         """
@@ -15,23 +14,23 @@ class ConsistentHashing:
     def _hash_virtual(self, node, replica):
         """
         Generate a hash value for a virtual replica of a node.
-
+        
         Parameters:
         node (str): The identifier of the physical node.
         replica (int): The replica number of the node.
-
+        
         Returns:
         int: The hashed key value.
         """
         # Convert the node identifier to a hash value using MD5
-        node_hash = int(hashlib.md5(node.encode("utf-8")).hexdigest(), 16)
+        node_hash = int(hashlib.md5(node.encode('utf-8')).hexdigest(), 16)
         # Calculate the position of the virtual node on the hash ring
         return (node_hash**2 + replica**2 + 2 * replica + 25) % self.num_slots
 
     def add_node(self, node):
         """
         Add a physical node and its virtual replicas to the hash ring.
-
+        
         Parameters:
         node (str): The identifier of the physical node.
         """
@@ -45,7 +44,7 @@ class ConsistentHashing:
     def remove_node(self, node):
         """
         Remove a physical node and its virtual replicas from the hash ring.
-
+        
         Parameters:
         node (str): The identifier of the physical node to be removed.
         """
@@ -55,10 +54,10 @@ class ConsistentHashing:
     def get_node(self, key):
         """
         Get the physical node responsible for the given key.
-
+        
         Parameters:
         key (int): The key for which the node is to be found.
-
+        
         Returns:
         str: The identifier of the responsible physical node.
         """

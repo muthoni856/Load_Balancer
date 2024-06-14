@@ -5,7 +5,7 @@ services:
     build:
       context: app
     ports:
-      - "5000"
+      - "5000:5000"
   load_balancer:
     build:
       context: app/
