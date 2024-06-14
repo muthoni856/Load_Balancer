@@ -63,13 +63,13 @@ Load_Balancer/
    }
    ```
 
-   ![Thunder Client POST Request](images/load_balancing_add.jpeg)
+   ![Thunder Client POST Request](images/load-balancing_add.jpeg)
 
    The response should include a JSON object containing the input values and a list of available servers.
 
 4. To test the load balancing across multiple requests, you can run the `test.py` script, which sends multiple requests to the load balancer and displays the responses from different servers.
 
-   ![Test Script Output](images/load balancing.jpeg)
+   ![Test Script Output](images/load_balancing.jpeg)
 
    You should see the responses coming from different servers (`server1`, `server2`, `server3`), demonstrating the load balancing functionality.
 
