@@ -49,7 +49,7 @@ Load_Balancer/
 
 2. Send a `GET` request to `localhost:8000/heartbeat` to check if the load balancer is running.
 
-   ![Thunder Client GET Request](""C:/Users/joymu/Downloads/heartbeat.jpeg"")
+   ![Thunder Client GET Request](images/heartbeat.jpeg)
   
 
    The response should show a successful status code (200 OK) and an empty response body.
@@ -63,13 +63,13 @@ Load_Balancer/
    }
    ```
 
-   ![Thunder Client POST Request](image4.png)
+   ![Thunder Client POST Request](images/load_balancing_add.jpeg)
 
    The response should include a JSON object containing the input values and a list of available servers.
 
 4. To test the load balancing across multiple requests, you can run the `test.py` script, which sends multiple requests to the load balancer and displays the responses from different servers.
 
-   ![Test Script Output](image3.png)
+   ![Test Script Output](images/load balancing.jpeg)
 
    You should see the responses coming from different servers (`server1`, `server2`, `server3`), demonstrating the load balancing functionality.
 
@@ -82,7 +82,7 @@ Load_Balancer/
    }
    ```
 
-   ![Thunder Client DELETE Request](image5.png)
+   ![Thunder Client DELETE Request](images/remove.jpeg)
 
    The response should include a JSON object confirming the successful removal of the specified servers.
 
